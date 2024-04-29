@@ -1,0 +1,40 @@
+{
+  "name": "code-name-format",
+  "version": "0.0.1",
+  "pluginName": "快捷变量名转换工具",
+  "description": "将任意写法变量名转换为多种格式变量名，另兼有中文翻译后转换功能(需配置百度翻译appkey,密钥) ; 支持格式 小驼峰,大驼峰,常量,下划线(小),下划线(大),分词(大),分词(小),连字符",
+  "logo": "./public/logo.png",
+  "preload": "preload.js",
+  "platform": ["win32", "darwin", "linux"],
+  "features": [
+    {
+      "code": "code-all",
+      "explain": "变量转换(全)",
+      "cmds": [
+        {
+          "type": "over",
+          "label": "变量转换(全)",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      ]
+    },
+    {
+      "code": "code-camel-case",
+      "explain": "小驼峰转换",
+      "cmds": [
+        {
+          "type": "over",
+          "label": "小驼峰转换",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      ]
+    },
+    {
+      "code": "setappid",
+      "explain": "配置翻译 appid 和 token",
+      "cmds": ["setappid"]
+    }
+  ]
+}
