@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+	<Extern href="stdidcmd.h" />
+
+	<Extern href="vsshlids.h" />
+
+
+	<Commands package="guidCodeNameFormatPackage">
+		<Menus>
+			<Menu guid="guidCodeNameFormatPackageCmdSet" id="SubMenu" priority="0x0100" type="Menu">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="MyMenuGroup" />
+				<Strings>
+					<ButtonText>Code Name Format()</ButtonText>
+					<CommandName>Code Name Format</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+		<Groups>
+			<Group guid="guidCodeNameFormatPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+			</Group>
+			<Group guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" priority="0x0000">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenu" />
+			</Group>
+		</Groups>
+		<Buttons>
+			<Button guid="guidCodeNameFormatPackageCmdSet" id="cmdidCamelCaseCommand" priority="0x0100" type="Button">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
+				<Icon guid="guidImages2" id="bmpPic1" />
+				<Strings>
+					<ButtonText>小驼峰 camelCase </ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidCodeNameFormatPackageCmdSet" id="cmdidPascalCaseCommand" priority="0x0100" type="Button">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
+				<Icon guid="guidImages1" id="bmpPic1" />
+				<Strings>
+					<ButtonText>大驼峰 pascalCase </ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseCommand" priority="0x0100" type="Button">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
+				<Icon guid="guidImages3" id="bmpPic1" />
+				<Strings>
+					<ButtonText>下划线(小) snakeCase </ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseUpCommand" priority="0x0100" type="Button">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
+				<Icon guid="guidImages4" id="bmpPic1" />
+				<Strings>
+					<ButtonText>下划线(大) pascalSnakeCase </ButtonText>
+				</Strings>
+			</Button>
+			<Button guid="guidCodeNameFormatPackageCmdSet" id="SetCommandId" priority="0x0100" type="Button">
+				<Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
+
+				<Strings>
+					<ButtonText>设置翻译key</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+
+		<Bitmaps>
+
+			<Bitmap guid="guidImages" href="Resources\SetCommand.png"  />
+			<Bitmap guid="guidImages1" href="Resources\PascalCaseCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+			<Bitmap guid="guidImages2" href="Resources\CamelCaseCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+			<Bitmap guid="guidImages3" href="Resources\SnakeCaseCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+			<Bitmap guid="guidImages4" href="Resources\SnakeCaseUpCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+		</Bitmaps>
+	</Commands>
+	<KeyBindings>
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidCamelCaseCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="1"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidPascalCaseCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="2"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="3"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseUpCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="4"   />
+
+	</KeyBindings>
+	<Symbols>
+		<!-- This is the package guid. -->
+		<GuidSymbol name="guidCodeNameFormatPackage" value="{3b54fdfe-a316-4653-8261-191535d85622}" />
+
+		<!-- This is the guid used to group the menu commands together -->
+		<GuidSymbol name="guidCodeNameFormatPackageCmdSet" value="{1d3c097b-05f7-4178-a292-cb20a9fef40e}">
+			<IDSymbol name="MyMenuGroup" value="0x1020" />
+			<IDSymbol value="201" name="cmdidCamelCaseCommand" />
+			<IDSymbol value="202" name="cmdidPascalCaseCommand" />
+			<IDSymbol value="203" name="cmdidSnakeCaseCommand" />
+			<IDSymbol value="204" name="cmdidSnakeCaseUpCommand" />
+			<IDSymbol name="SetCommandId" value="0x0100" />
+			<IDSymbol name="SubMenu" value="0x1100" />
+			<IDSymbol name="SubMenuGroup" value="0x1150" />
+		</GuidSymbol>
+
+		<GuidSymbol name="guidImages" value="{7411465e-9a73-4ba7-b9fb-feb3a3812588}">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+
+		<GuidSymbol value="{a6146048-df3b-4886-a46c-4e6d3a7ed3e1}" name="guidImages1">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+
+		<GuidSymbol value="{5f296881-363f-4c97-8551-c8ee082b257d}" name="guidImages2">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+
+		<GuidSymbol value="{92ecab91-a81f-4113-9aeb-7bd3df613ac1}" name="guidImages3">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+
+		<GuidSymbol value="{62f106b3-0183-482d-b94d-da9859cac186}" name="guidImages4">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+	</Symbols>
+</CommandTable>
