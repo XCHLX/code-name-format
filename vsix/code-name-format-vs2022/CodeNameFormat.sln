@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeNameFormat", "CodeNameFormat.csproj", "{0D0B777D-2692-4302-9C1A-4D6DACEB96F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeNameFormat-vs2022", "CodeNameFormat-vs2022.csproj", "{0D0B777D-2692-4302-9C1A-4D6DACEB96F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
