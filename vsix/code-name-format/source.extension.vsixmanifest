@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" ?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CodeNameFormat.4de96bac-0681-482a-a9c6-7ef263778f2c" Version="0.0.1" Language="zh-Hans" Publisher="我姓陈" />
-        <DisplayName>CodeNameFormat</DisplayName>
+        <Identity Id="CodeNameFormat.4de96bac-0681-482a-a9c6-7ef263778f2c" Version="0.0.2" Language="zh-Hans" Publisher="WXC" />
+        <DisplayName>CodeNameFormat2022</DisplayName>
         <Description xml:space="preserve">将任意写法变量名转换为多种格式变量名，另兼有中文翻译后转换功能(需配置百度翻译appkey,密钥) ; 
 支持格式 小驼峰,大驼峰,常量,下划线(小),下划线(大),分词(大),分词(小),连字符</Description>
     </Metadata>
     <Installation>
-        <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
+        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
-        <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
-            <ProductArchitecture>x86</ProductArchitecture>
+        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Pro">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0,18.0)" Id="Microsoft.VisualStudio.Enterprise">
+            <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>
     <Dependencies>
