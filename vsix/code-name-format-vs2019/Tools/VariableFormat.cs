@@ -11,6 +11,11 @@ namespace CodeNameFormat.Tools
         {
             str = TranslateHelp.Translate(str);
 
+
+            if (str.Contains("_") || str.Contains("-"))
+            {
+                str= str.ToLower();
+            }
             switch (type)
             {
                 case FormatEnum.CamelCase:

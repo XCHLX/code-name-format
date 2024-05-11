@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Web;
 
 namespace CodeNameFormat.Tools
@@ -53,7 +55,7 @@ namespace CodeNameFormat.Tools
                 myStreamReader.Close();
                 myResponseStream.Close();
 
-                return JsonConvert.DeserializeObject<BaiDuAPIResponse>(retString);
+                return JsonSerializer.Deserialize<BaiDuAPIResponse>(retString);
             }
             catch (Exception)
             {
@@ -86,13 +88,13 @@ namespace CodeNameFormat.Tools
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("src")]
+        [JsonPropertyName("src")]
         public string Src { get; set; }
 
         /// <summary>
         /// 苹果
         /// </summary>
-        [JsonProperty("dst")]
+        [JsonPropertyName("dst")]
         public string Dst { get; set; }
     }
 
@@ -104,31 +106,31 @@ namespace CodeNameFormat.Tools
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("from")]
+        [JsonPropertyName("from")]
         public string From { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("to")]
+        [JsonPropertyName("to")]
         public string To { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("trans_result")]
+        [JsonPropertyName("trans_result")]
         public List<TransResultItem> TransResult { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("error_code")]
+        [JsonPropertyName("error_code")]
         public string ErrorCode { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        [JsonProperty("error_msg")]
+        [JsonPropertyName("error_msg")]
         public string ErrorMsg { get; set; }
     }
 }

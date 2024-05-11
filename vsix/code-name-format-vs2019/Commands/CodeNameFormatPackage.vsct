@@ -27,7 +27,7 @@
 		  <Menu guid="guidCodeNameFormatPackageCmdSet" id="SubMenu" priority="0x0100" type="Menu">
 			  <Parent guid="guidCodeNameFormatPackageCmdSet" id="MyMenuGroup" />
 			  <Strings>
-				  <ButtonText>Code Name Format()</ButtonText>
+				  <ButtonText>Code Name Format</ButtonText>
 				  <CommandName>Code Name Format</CommandName>
 			  </Strings>
 		  </Menu>
@@ -77,7 +77,7 @@
         <Parent guid="guidCodeNameFormatPackageCmdSet" id="SubMenuGroup" />
         <Icon guid="guidImages3" id="bmpPic1" />
         <Strings>
-			<ButtonText>下划线(大) pascalSnakeCase </ButtonText>
+			<ButtonText>常量 constant </ButtonText>
         </Strings>
       </Button>
       <Button guid="guidCodeNameFormatPackageCmdSet" id="cmdidSetCommand" priority="0x0100" type="Button">
@@ -103,7 +103,13 @@
       <Bitmap guid="guidImages4" href="Resources\SetCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
   </Commands>
+	<KeyBindings>
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="CamelCaseCommandId" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="1"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidPascalCaseCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="2"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="3"   />
+		<KeyBinding guid="guidCodeNameFormatPackageCmdSet" id="cmdidSnakeCaseUpCommand" editor="guidVSStd97" key1="R" mod1="CONTROL" key2="4"   />
 
+	</KeyBindings>
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidCodeNameFormatPackage" value="{60f15b9f-fbf7-46b5-833a-f91a0b5a1782}" />

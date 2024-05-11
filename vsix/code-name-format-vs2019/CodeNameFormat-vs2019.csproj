@@ -87,8 +87,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.208" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.11.71" />
-    <PackageReference Include="TencentCloudSDK.Tmt">
-      <Version>3.0.998</Version>
+    <PackageReference Include="System.Text.Json">
+      <Version>9.0.0-preview.3.24172.9</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

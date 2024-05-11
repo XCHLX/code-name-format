@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CodeNameFormat.96c827e3-1e0e-4582-ac0e-5d210c9cd526" Version="0.0.1" Language="zh-Hans" Publisher="WXC" />
+        <Identity Id="CodeNameFormat.96c827e3-1e0e-4582-ac0e-5d210c9cd526" Version="0.0.4" Language="zh-Hans" Publisher="WXC" />
         <DisplayName>CodeNameFormat 2019</DisplayName>
         <Description xml:space="preserve">将任意写法变量名转换为多种格式变量名;
 另兼有中文翻译后转换功能(需配置翻译appkey,密钥) ; 
