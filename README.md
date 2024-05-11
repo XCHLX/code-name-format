@@ -4,6 +4,12 @@
 
 # [VS2019](https://marketplace.visualstudio.com/items?itemName=WXC.CodeNameFormat2019) 插件演示
 
+## 配置翻译
+
+![使用演示](https://img2.imgtp.com/2024/05/11/xZXA3ZAa.gif)
+
+## 插件使用
+
 ![使用演示](https://img2.imgtp.com/2024/05/11/jimjX5Hr.gif)
 
 # [uTools](https://u.tools/) 插件演示
