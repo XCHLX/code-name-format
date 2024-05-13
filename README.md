@@ -6,6 +6,8 @@
 
 # [VS2019 插件下载](https://marketplace.visualstudio.com/items?itemName=WXC.CodeNameFormat2019)
 
+# [VS2022 插件下载](https://marketplace.visualstudio.com/items?itemName=WXC.CodeNameFormat)
+
 源码在 vsix 文件夹下
 
 ## 配置翻译
