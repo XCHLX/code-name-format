@@ -314,3 +314,5 @@ __pycache__/
 .vscode/
 ConsoleApp1/
 *.DotSettings
+code-name-format-vscode-0.0.1.vsix
+dist
