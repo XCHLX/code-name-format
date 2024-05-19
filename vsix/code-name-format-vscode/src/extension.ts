@@ -1,26 +1,43 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+// 导入VS Code的扩展API
 import * as vscode from 'vscode';
+import { CodeNameFormatMain, changeCaseMap } from './tools/codeNameFormat';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+// 声明翻译缓存字典
+const cacheDictionary: { [key: string]: string } = {};
+
+/**
+ * 激活扩展时的入口函数。
+ * @param context VS Code扩展上下文，用于注册命令和管理扩展生命周期。
+ */
 export function activate(context: vscode.ExtensionContext) {
+  // 注册全部格式转换的命令
+  let all = vscode.commands.registerCommand('codeNameFormat.all', async () => {
+    await CodeNameFormatMain(cacheDictionary);
+  });
+  // 注册默认格式转换的命令，会读取配置中的默认格式并展示信息
+  let def = vscode.commands.registerCommand('codeNameFormat.default', async () => {
+    const defaultFormat = vscode.workspace.getConfiguration('codeNameFormat')['defaultFormat'];
+    vscode.window.showInformationMessage(defaultFormat);
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "code-name-format-vscode" is now active!');
+    await CodeNameFormatMain(cacheDictionary, defaultFormat);
+  });
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('code-name-format-vscode.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from code-name-format-vscode!');
-	});
+  // 将注册的命令添加到订阅中，以便在扩展被禁用时进行清理
+  context.subscriptions.push(all);
+  context.subscriptions.push(def);
 
-	context.subscriptions.push(disposable);
+  // 循环注册额外的格式转换命令，每个格式对应一个命令
+  for (const item of changeCaseMap) {
+    context.subscriptions.push(
+      vscode.commands.registerCommand(`codeNameFormat.${item.name}`, async () => {
+        vscode.window.showInformationMessage(item.description);
+        await CodeNameFormatMain(cacheDictionary, item.name);
+      })
+    );
+  }
 }
 
-// This method is called when your extension is deactivated
+/**
+ * 扩展停用时的入口函数，目前为空，可根据需要添加逻辑。
+ */
 export function deactivate() {}

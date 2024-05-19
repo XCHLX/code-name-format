@@ -1,28 +1,228 @@
 {
-  "name": "code-name-format-vscode",
-  "displayName": "code-name-format-vscode",
+  "name": "code_name_format_vscode",
+  "displayName": "CodeNameFormatVscode",
   "description": "codename",
   "version": "0.0.1",
+  "icon": "images/icon.png",
+  "author": "WXC",
+  "publisher": "WXC",
   "repository": {
     "directory": "",
     "type": "git",
-    "url": ""
+    "url": "https://github.com/XCHLX/code-name-format"
   },
+  "homepage": "https://github.com/XCHLX/code-name-format/blob/master/README.md",
   "engines": {
     "vscode": "^1.50.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "keywords": [
+    "translate",
+    "variable",
+    "camel",
+    "var",
+    "code",
+    "codeNameFormat",
+    "翻译",
+    "变量",
+    "驼峰",
+    "代码",
+    "格式化"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "code-name-format-vscode.helloWorld",
-        "title": "Hello World"
+        "command": "codeNameFormat.all",
+        "title": "变量格式化(全)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.default",
+        "title": "默认格式化",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.camelCase",
+        "title": "camelCase 驼峰(小)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.pascalCase",
+        "title": "pascalCase 驼峰(大)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.constantCase",
+        "title": "constantCase 常量",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.snakeCase",
+        "title": "snakeCase 下划线",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.kebabCase",
+        "title": "kebabCase 中划线(小)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.trainCase",
+        "title": "trainCase 中划线(大)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.noCase",
+        "title": "noCase 分词(小)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.capitalCase",
+        "title": "capitalCase 分词(大)",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.dotCase",
+        "title": "dotCase 对象属性",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
+      },
+      {
+        "command": "codeNameFormat.pathCase",
+        "title": "pathCase 文件路径",
+        "when": "editorHasSelection",
+        "category": "codeNameFormat"
       }
-    ]
+    ],
+    "submenus": [
+      {
+        "id": "my-project-menus",
+        "label": "Code Name Format"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "my-project-menus",
+          "group": "navigation",
+          "when": "editorHasSelection"
+        }
+      ],
+      "my-project-menus": [
+        {
+          "command": "codeNameFormat.all",
+          "group": "1"
+        },
+        {
+          "command": "codeNameFormat.default",
+          "group": "2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeNameFormat.all",
+        "key": "alt+q q",
+        "mac": "cmd+q q",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "codeNameFormat.default",
+        "key": "alt+q 1",
+        "mac": "cmd+q 1",
+        "when": "editorHasSelection"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Code Name From",
+      "properties": {
+        "codeNameFormat.baiduAppid": {
+          "type": "string",
+          "default": "",
+          "description": "百度翻译appid",
+          "order": 2
+        },
+        "codeNameFormat.baiduSecretKey": {
+          "type": "string",
+          "default": "",
+          "description": "百度翻译密钥  ",
+          "order": 2
+        },
+        "codeNameFormat.tencentSecretId": {
+          "type": "string",
+          "default": "",
+          "description": "腾讯翻译secretId",
+          "order": 3
+        },
+        "codeNameFormat.tencentSecretKey": {
+          "type": "string",
+          "default": "",
+          "description": "腾讯翻译密钥",
+          "order": 3
+        },
+        "codeNameFormat.translationEngine": {
+          "type": "string",
+          "enum": [
+            "baidu",
+            "tencent"
+          ],
+          "enumDescriptions": [
+            "百度",
+            "腾讯翻译君"
+          ],
+          "default": "baidu",
+          "description": "翻译引擎",
+          "order": 1
+        },
+        "codeNameFormat.defaultFormat": {
+          "type": "string",
+          "enum": [
+            "camelCase",
+            "pascalCase",
+            "constantCase",
+            "snakeCase",
+            "kebabCase",
+            "trainCase",
+            "noCase",
+            "capitalCase",
+            "dotCase",
+            "pathCase"
+          ],
+          "enumDescriptions": [
+            "camelCase 驼峰(小)",
+            "pascalCase 驼峰(大)",
+            "constantCase 常量",
+            "snakeCase 下划线",
+            "kebabCase 中划线(小)",
+            "trainCase 中划线(大)",
+            "noCase 分词(小)",
+            "capitalCase 分词(大)",
+            "dotCase 对象属性",
+            "pathCase 文件路径"
+          ],
+          "default": "camelCase",
+          "description": "默认格式化",
+          "order": 0
+        }
+      }
+    }
   },
   "scripts": {
     "build": "pnpm vsce package --no-dependencies",
@@ -40,16 +240,23 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.50.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.50.0",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
-    "eslint": "^8.57.0",
-    "esbuild": "^0.20.2",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.4.5",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9"
-  }
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "change-case": "^5.4.4",
+    "qs": "^6.12.1",
+    "tencentcloud-sdk-nodejs-tmt": "^4.0.853"
+  },
+  "license": "SEE LICENSE IN LICENSE"
 }

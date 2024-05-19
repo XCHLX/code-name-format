@@ -311,8 +311,11 @@ __pycache__/
 *.xml
 
 *.orig
-.vscode/
+
 ConsoleApp1/
 *.DotSettings
 code-name-format-vscode-0.0.1.vsix
 dist
+.vscode-test
+ 
+vsix/code-name-format-vscode/out/
