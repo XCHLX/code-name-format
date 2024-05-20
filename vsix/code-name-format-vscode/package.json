@@ -127,11 +127,11 @@
       "my-project-menus": [
         {
           "command": "codeNameFormat.all",
-          "group": "1"
+          "group": "codename"
         },
         {
           "command": "codeNameFormat.default",
-          "group": "2"
+          "group": "codename"
         }
       ]
     },
@@ -220,6 +220,22 @@
           "default": "camelCase",
           "description": "默认格式化",
           "order": 0
+        }
+      }
+    },
+    "icons": {
+      "distro-ubuntu": {
+        "description": "Ubuntu icon",
+        "default": {
+          "fontPath": "./distroicons.woff",
+          "fontCharacter": "\\E001"
+        }
+      },
+      "distro-fedora": {
+        "description": "Ubuntu icon",
+        "default": {
+          "fontPath": "./distroicons.woff",
+          "fontCharacter": "\\E002"
         }
       }
     }

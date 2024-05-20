@@ -110,6 +110,8 @@ async function CodeNameFormatMain(cacheDictionary: { [key: string]: string }, na
   if (!editor) {
     return;
   }
+  // 进度渲染
+  vscode.window.setStatusBarMessage(`CodeNameFormat$(sync~spin)`);
   // 遍历所有选区，对每个选中的文本进行处理
   for (const selection of editor.selections) {
     const selected = editor.document.getText(selection);
@@ -123,8 +125,14 @@ async function CodeNameFormatMain(cacheDictionary: { [key: string]: string }, na
     // 使用处理后的文本替换原始选中文本
     editor.edit(builder => builder.replace(selection, str));
   }
+  // await sleep(2000); // 睡眠2秒
+  // 完成渲染
+  vscode.window.setStatusBarMessage(``);
 }
 
+// function sleep(ms: number) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
 /**
  * 翻译给定字符串。
  * @param str 需要翻译的字符串。

@@ -2,7 +2,7 @@
  * 百度翻译api模块
  * 该模块提供了使用百度翻译API进行文本翻译的功能
  */
-import * as vscode from 'vscode';
+
 // 引入加密算法模块，用于处理签名的生成
 const crypto = require('crypto');
 const axios = require('axios');
@@ -126,7 +126,7 @@ async function baiduTxtTranslate(
     await baiduTranslateApi(strq, appid, secretKey)
       .then((res: baiduResponse) => {
         if (res.error_msg) {
-          vscode.window.showInformationMessage(`翻译失败:${res.error_msg} 请设置正确的appkey和密钥`);
+          // vscode.window.showInformationMessage(`翻译失败:${res.error_msg} 请设置正确的appkey和密钥`);
         } else {
           // 替换文本中的翻译结果
           res.trans_result.map((item: TransResultItem) => {
