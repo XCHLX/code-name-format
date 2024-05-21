@@ -14,6 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   const statusBarContent = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
   statusBarContent.text = `$(check-all)CodeNameFormat`;
+  statusBarContent.color = 'yellow';
+  // statusBarContent.name = 'CodeNameFormat';
   // statusBarContent.command = 'codeNameFormat.default';
   statusBarContent.show();
 

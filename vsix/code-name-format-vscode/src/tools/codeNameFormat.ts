@@ -18,6 +18,7 @@ import * as vscode from 'vscode';
 // 导入百度和腾讯的文本翻译函数
 import { baiduTxtTranslate } from './baiduTranslate';
 import { tencentTxtTranslate } from './tencentTranslate';
+import { QuickPickItem } from 'vscode';
 
 /**
  * 代码名称格式化接口定义
@@ -36,42 +37,35 @@ interface changeCaseMap {
  * 每个元素都是一个对象，包含命名格式的名称、处理函数和描述信息。
  */
 const changeCaseMap: changeCaseMap[] = [
-  { name: 'camelCase', handle: camelCase, description: 'camelCase 驼峰(小)' },
-  { name: 'pascalCase', handle: pascalCase, description: 'pascalCase 驼峰(大)' },
-  { name: 'constantCase', handle: constantCase, description: 'constantCase 常量' },
-  { name: 'snakeCase', handle: snakeCase, description: 'snakeCase 下划线' },
-  { name: 'kebabCase', handle: kebabCase, description: 'kebabCase 中划线(小)' },
-  { name: 'trainCase', handle: trainCase, description: 'trainCase 中划线(大)' },
-  { name: 'noCase', handle: noCase, description: 'noCase 分词(小)' },
-  { name: 'capitalCase', handle: capitalCase, description: 'capitalCase 分词(大)' },
-  { name: 'dotCase', handle: dotCase, description: 'dotCase 对象属性' },
-  { name: 'pathCase', handle: pathCase, description: 'pathCase 文件路径' }
+  { name: 'camelCase', handle: camelCase, description: '  驼峰(小)' },
+  { name: 'pascalCase', handle: pascalCase, description: '  驼峰(大)' },
+  { name: 'constantCase', handle: constantCase, description: '  常量' },
+  { name: 'snakeCase', handle: snakeCase, description: '  下划线' },
+  { name: 'kebabCase', handle: kebabCase, description: '  中划线(小)' },
+  { name: 'trainCase', handle: trainCase, description: '  中划线(大)' },
+  { name: 'noCase', handle: noCase, description: '  分词(小)' },
+  { name: 'capitalCase', handle: capitalCase, description: '  分词(大)' },
+  { name: 'dotCase', handle: dotCase, description: '  对象属性' },
+  { name: 'pathCase', handle: pathCase, description: '  文件路径' }
 ];
 
-/**
- * 定义一个接口，用于表示具有标签和描述的对象。
- * 这个接口被用于诸如选择命名格式的下拉列表中的项目。
- */
-interface Items {
-  label: string; // 项目的显示名称
-  description: string; // 项目的详细描述
-}
 /**
  * 异步函数，用于执行变量格式化。
  * @param str 需要格式化的字符串。
  * @param name 指定格式化的方式，默认为'all'，表示全部格式化。
  * @returns 返回一个Promise，解析为选择的格式化标签。
  */
-async function variableFormatting(str: string, name: string = 'all'): Promise<any> {
+async function variableFormatting(str: string, name: string = 'all'): Promise<string> {
   if (name === 'all') {
     // 初始化一个空数组，用于存储后续生成的项目列表。
-    let items: Array<Items> = [];
+    let items: Array<QuickPickItem> = [];
 
     // 遍历changeCaseMap，生成每个转换器的标签和描述，并添加到items数组中。
     for (const item of changeCaseMap) {
       items.push({
-        label: item.handle(str),
-        description: item.description
+        label: item.handle(str) + item.description,
+        // detail: item.description,
+        description: item.name
       });
     }
 
@@ -85,18 +79,13 @@ async function variableFormatting(str: string, name: string = 'all'): Promise<an
 
     // 如果没有选择，则直接返回undefined。
     if (!selections) {
-      return;
+      return '';
     }
 
     // 返回用户选择的标签。
-    return selections.label;
-  } else {
-    const changeCaseObj = changeCaseMap.find(item => item.name === name);
-    if (changeCaseObj) {
-      return changeCaseObj.handle(str);
-    }
+    return selections.description as string;
   }
-  return str;
+  return name;
 }
 
 /**
@@ -111,7 +100,7 @@ async function CodeNameFormatMain(cacheDictionary: { [key: string]: string }, na
     return;
   }
   // 进度渲染
-  vscode.window.setStatusBarMessage(`CodeNameFormat$(sync~spin)`);
+  var sync = vscode.window.setStatusBarMessage(`CodeNameFormat$(sync~spin)`);
   // 遍历所有选区，对每个选中的文本进行处理
   for (const selection of editor.selections) {
     const selected = editor.document.getText(selection);
@@ -121,18 +110,27 @@ async function CodeNameFormatMain(cacheDictionary: { [key: string]: string }, na
     // 调用翻译函数，将选中文本翻译成另一种语言
     let str = await Translate(selected, cacheDictionary);
     // 对翻译后的文本进行变量格式化处理
-    str = await variableFormatting(str, name);
-    // 使用处理后的文本替换原始选中文本
-    editor.edit(builder => builder.replace(selection, str));
+    name = await variableFormatting(str, name);
+
+    const changeCaseObj = changeCaseMap.find(item => item.name === name);
+    if (changeCaseObj) {
+      str = changeCaseObj.handle(str);
+      // 使用处理后的文本替换原始选中文本
+      editor.edit(builder => builder.replace(selection, str));
+    }
+
+    await sleep(100); // 睡眠100毫秒
   }
-  // await sleep(2000); // 睡眠2秒
   // 完成渲染
-  vscode.window.setStatusBarMessage(``);
+  // await sleep(2000); // 睡眠100毫秒
+
+  // vscode.window.setStatusBarMessage(``);
+  sync.dispose();
 }
 
-// function sleep(ms: number) {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 /**
  * 翻译给定字符串。
  * @param str 需要翻译的字符串。
@@ -141,13 +139,13 @@ async function CodeNameFormatMain(cacheDictionary: { [key: string]: string }, na
 async function Translate(str: string, cacheDictionary: { [key: string]: string }): Promise<string> {
   // 获取当前配置中的翻译引擎类型
   const translationEngine = vscode.workspace.getConfiguration('codeNameFormat')['translationEngine'];
-
   // 使用百度翻译
   if (translationEngine === 'baidu') {
     const baiduAppid = vscode.workspace.getConfiguration('codeNameFormat')['baiduAppid'];
     const baiduSecretKey = vscode.workspace.getConfiguration('codeNameFormat')['baiduSecretKey'];
     // 如果未配置百度AppID或SecretKey，则直接返回原始字符串
     if (!baiduAppid || !baiduSecretKey) {
+      vscode.window.showWarningMessage('请配置百度翻译AppID和SecretKey');
       return str;
     }
     // 调用百度翻译API进行翻译
@@ -159,6 +157,7 @@ async function Translate(str: string, cacheDictionary: { [key: string]: string }
     const tencentSecretKey = vscode.workspace.getConfiguration('codeNameFormat')['tencentSecretKey'];
     // 如果未配置腾讯SecretId或Secret，则直接返回原始字符串
     if (!tencentAppid || !tencentSecretKey) {
+      vscode.window.showWarningMessage('请配置腾讯翻译AppID和SecretKey');
       return str;
     }
     // 调用腾讯翻译API进行翻译

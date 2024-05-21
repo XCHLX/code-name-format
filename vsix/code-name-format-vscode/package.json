@@ -1,5 +1,5 @@
 {
-  "name": "code_name_format_vscode",
+  "name": "code-name-format-vscode",
   "displayName": "CodeNameFormatVscode",
   "description": "codename",
   "version": "0.0.1",
@@ -220,22 +220,6 @@
           "default": "camelCase",
           "description": "默认格式化",
           "order": 0
-        }
-      }
-    },
-    "icons": {
-      "distro-ubuntu": {
-        "description": "Ubuntu icon",
-        "default": {
-          "fontPath": "./distroicons.woff",
-          "fontCharacter": "\\E001"
-        }
-      },
-      "distro-fedora": {
-        "description": "Ubuntu icon",
-        "default": {
-          "fontPath": "./distroicons.woff",
-          "fontCharacter": "\\E002"
         }
       }
     }
